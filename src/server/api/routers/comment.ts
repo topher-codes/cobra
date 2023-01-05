@@ -6,11 +6,11 @@ export const commentRouter = createTRPCRouter({
   getAll: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.comments.findMany();
   }),
-  getOne: publicProcedure
+  getPostComments: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(({ ctx, input }) => {
-      return ctx.prisma.comments.findUnique({
-        where: { id: input.id },
+      return ctx.prisma.comments.findMany({
+        where: { postId: input.id },
       });
     }),
   create: protectedProcedure

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 const Navbar = () => {
   const session = useSession();
@@ -34,9 +35,16 @@ const Navbar = () => {
             href={`/profile/${session.data?.user?.id}`}
             className="mt-4 mr-4 block text-gray-200 hover:text-white lg:mt-0 lg:inline-block"
           >
-            Profile
+            <span>Profile</span>
           </Link>
         </div>
+        <Image
+          src={session.data?.user?.image || "/avatarph.webp"}
+          width={50}
+          height={50}
+          alt="ProfileImage"
+          className="rounded-full"
+        />
       </div>
     </nav>
   );

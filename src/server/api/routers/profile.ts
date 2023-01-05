@@ -12,7 +12,12 @@ export const profileRouter = createTRPCRouter({
     }),
   update: protectedProcedure
     .input(
-      z.object({ id: z.string(), name: z.string(), email: z.string().email() })
+      z.object({
+        id: z.string(),
+        name: z.string(),
+        email: z.string().email(),
+        image: z.string(),
+      })
     )
     .mutation(({ ctx, input }) => {
       return ctx.prisma.user.update({
@@ -20,6 +25,7 @@ export const profileRouter = createTRPCRouter({
         data: {
           name: input.name,
           email: input.email,
+          image: input.image,
         },
       });
     }),
