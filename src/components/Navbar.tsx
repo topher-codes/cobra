@@ -4,7 +4,9 @@ const Navbar = () => {
   return (
     <nav className="flex flex-wrap items-center justify-between bg-gray-800 p-6">
       <div className="mr-6 flex flex-shrink-0 items-center text-white">
-        <span className="text-xl font-semibold tracking-tight">Cobra</span>
+        <span className="text-xl font-semibold tracking-tight">
+          <Link href="/">Cobra</Link>
+        </span>
       </div>
       <div className="block lg:hidden">
         <button className="flex items-center rounded border border-gray-400 px-3 py-2 text-gray-200 hover:border-white hover:text-white">

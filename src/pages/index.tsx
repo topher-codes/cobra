@@ -28,7 +28,7 @@ const Home: NextPage = () => {
         ) : (
           <>
             <p>You are not signed in</p>
-            <button onClick={() => signIn()}>Sign in</button>
+            <button onClick={() => signIn()}>Sign In</button>
           </>
         )}
       </main>

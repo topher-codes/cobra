@@ -1,4 +1,5 @@
 import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 import { api } from "../utils/api";
 
 const BoardPage = () => {
@@ -14,9 +15,11 @@ const BoardPage = () => {
           <>
             {result.data?.map((post) => (
               <div key={post.id} className="min-w-full border p-4">
-                <h2 className="text-3xl">{post.title}</h2>
+                <h2 className="text-3xl">
+                  <Link href={`/post/${post.title}`}>{post.title}</Link>
+                </h2>
                 <p>{post.content}</p>
-                <p>{post.published}</p>
+                <p>{post.authorName}</p>
               </div>
             ))}
             {JSON.stringify(result.data)}
