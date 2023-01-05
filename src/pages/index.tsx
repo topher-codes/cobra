@@ -7,6 +7,8 @@ import { api } from "../utils/api";
 import { useState } from "react";
 
 import Navbar from "../components/Navbar";
+import SignIn from "../components/SignIn";
+import SignOut from "../components/SignOut";
 
 const Home: NextPage = () => {
   const session = useSession();
@@ -23,12 +25,12 @@ const Home: NextPage = () => {
           <>
             <p>You are signed in</p>
             <PostForm />
-            <button onClick={() => signOut()}>Sign out</button>
+            <SignOut />
           </>
         ) : (
           <>
             <p>You are not signed in</p>
-            <button onClick={() => signIn()}>Sign In</button>
+            <SignIn />
           </>
         )}
       </main>
@@ -72,7 +74,12 @@ const PostForm: React.FC = () => {
         value={body}
         onChange={(e) => setBody(e.target.value)}
       />
-      <button type="submit">Submit</button>
+      <button
+        className="w-full rounded border-4 border-slate-800 p-1 hover:border-slate-400"
+        type="submit"
+      >
+        Submit
+      </button>
     </form>
   );
 };
