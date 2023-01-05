@@ -47,9 +47,13 @@ const PostForm: React.FC = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (session.data?.user) {
-      mutation.mutate({ title, content: body, authorId: session.data.user.id });
+      mutation.mutate({
+        title,
+        content: body,
+        authorId: session.data.user.id,
+        authorName: session.data.user.name,
+      });
     }
-    e.target.reset();
   };
 
   return (

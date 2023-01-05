@@ -49,7 +49,7 @@ model Session {
 
 model User {
     id            String     @id @default(cuid())
-    name          String?
+    name          String
     email         String?    @unique
     emailVerified DateTime?
     image         String?
@@ -57,6 +57,8 @@ model User {
     sessions      Session[]
     Posts         Posts[]
     Comments      Comments[]
+
+    @@unique([id, name])
 }
 
 model VerificationToken {
@@ -68,15 +70,16 @@ model VerificationToken {
 }
 
 model Posts {
-    id        String     @id @default(cuid())
-    createdAt DateTime   @default(now())
-    updatedAt DateTime   @default(now()) @updatedAt
-    title     String
-    content   String
-    published Boolean    @default(false)
-    author    User       @relation(fields: [authorId], references: [id])
-    authorId  String
-    Comments  Comments[]
+    id         String     @id @default(cuid())
+    createdAt  DateTime   @default(now())
+    updatedAt  DateTime   @default(now()) @updatedAt
+    title      String
+    content    String
+    published  Boolean    @default(false)
+    author     User       @relation(fields: [authorId, authorName], references: [id, name])
+    authorId   String
+    authorName String
+    Comments   Comments[]
 }
 
 model Comments {

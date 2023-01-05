@@ -15,7 +15,12 @@ export const postRouter = createTRPCRouter({
     }),
   create: protectedProcedure
     .input(
-      z.object({ title: z.string(), content: z.string(), authorId: z.string() })
+      z.object({
+        title: z.string(),
+        content: z.string(),
+        authorId: z.string(),
+        authorName: z.string(),
+      })
     )
     .mutation(({ ctx, input }) => {
       return ctx.prisma.posts.create({
@@ -23,6 +28,7 @@ export const postRouter = createTRPCRouter({
           title: input.title,
           content: input.content,
           authorId: input.authorId,
+          authorName: input.authorName,
         },
       });
     }),

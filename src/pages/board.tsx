@@ -13,11 +13,13 @@ const BoardPage = () => {
         {session.data?.user ? (
           <>
             {result.data?.map((post) => (
-              <div key={post.id} className=" border p-4">
-                <h2>{post.title}</h2>
+              <div key={post.id} className="min-w-full border p-4">
+                <h2 className="text-3xl">{post.title}</h2>
                 <p>{post.content}</p>
+                <p>{post.published}</p>
               </div>
             ))}
+            {JSON.stringify(result.data)}
             <p>You are signed in</p>
             <button onClick={() => signOut()}>Sign out</button>
           </>
