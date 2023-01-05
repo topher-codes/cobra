@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
+  const session = useSession();
   return (
     <nav className="flex flex-wrap items-center justify-between bg-gray-800 p-6">
       <div className="mr-6 flex flex-shrink-0 items-center text-white">
@@ -29,7 +31,7 @@ const Navbar = () => {
             Board
           </Link>
           <Link
-            href="/profile"
+            href={`/profile/${session.data?.user?.id}`}
             className="mt-4 mr-4 block text-gray-200 hover:text-white lg:mt-0 lg:inline-block"
           >
             Profile
