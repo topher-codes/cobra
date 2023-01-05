@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { api } from "../../utils/api";
 import BackButton from "../../components/BackButton";
 import { useSession } from "next-auth/react";
-import { getRouteMatcher } from "next/dist/shared/lib/router/utils/route-matcher";
 
 const DynamicPostPage = () => {
   const router = useRouter();
@@ -19,10 +18,15 @@ const DynamicPostPage = () => {
 
   return (
     <>
-      <main className="flex w-full flex-1 flex-col  px-20">
-        <h1 className="py-4 text-4xl font-bold">Post ID: {id}</h1>
-        <p className="py-4 text-2xl font-bold">TITLE: {post}</p>
-        <p className="py-4 text-2xl font-bold">CONTENT: {content}</p>
+      <main
+        className="flex 
+       w-full flex-1 flex-col px-20"
+      >
+        <div className="  min-h-screen border-4 border-slate-800">
+          <h1 className="py-4 text-4xl font-bold">Post ID: {id}</h1>
+          <p className="py-4 text-2xl font-bold">TITLE: {post}</p>
+          <p className="py-4 text-2xl font-bold">CONTENT: {content}</p>
+        </div>
         <CommentSection />
         <PostComment />
         <BackButton />
@@ -43,19 +47,20 @@ const CommentSection = () => {
 
   return (
     <>
-      <div className="flex w-full flex-col">
-        <h1 className="py-4 text-4xl font-bold">Comments</h1>
+      <div className="flex w-full flex-col ">
+        <h1 className=" py-4 text-4xl font-bold">Comments</h1>
         {isLoading ? (
           <p>Loading...</p>
         ) : error ? (
           <p>Something went wrong</p>
         ) : (
           data?.map((comment) => (
-            <div className="flex w-full flex-col" key={comment.id}>
-              <p className="py-4 text-2xl font-bold">ID: {comment.id}</p>
-              <p className="py-4 text-2xl font-bold">
-                CONTENT: {comment.content}
-              </p>
+            <div
+              className="my-2 flex w-full flex-col border-4"
+              key={comment.id}
+            >
+              <p className="py-4 font-bold">{comment.content}</p>
+              <p className="py-4 font-bold">By: {}</p>
             </div>
           ))
         )}
@@ -87,13 +92,18 @@ const PostComment = () => {
       <div className="flex w-full flex-col">
         <h1 className="py-4 text-4xl font-bold">Post Comment</h1>
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
+          <textarea
             placeholder="Comment"
             value={content}
             onChange={(e) => setContent(e.target.value)}
+            className="h-40 w-full border-4 border-slate-800"
           />
-          <button type="submit">Submit</button>
+          <button
+            className="my-10 w-full border border-black py-10"
+            type="submit"
+          >
+            <div className="text-6xl">Submit</div>
+          </button>
         </form>
       </div>
     </>
