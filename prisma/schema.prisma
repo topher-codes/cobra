@@ -53,6 +53,7 @@ model User {
     email         String?    @unique
     emailVerified DateTime?
     image         String?
+    xp            Int        @default(0)
     accounts      Account[]
     sessions      Session[]
     Posts         Posts[]
@@ -83,13 +84,14 @@ model Posts {
 }
 
 model Comments {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @default(now()) @updatedAt
-    content   String
-    published Boolean  @default(false)
-    author    User     @relation(fields: [authorId], references: [id])
-    authorId  String
-    post      Posts    @relation(fields: [postId], references: [id])
-    postId    String
+    id         String   @id @default(cuid())
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @default(now()) @updatedAt
+    content    String
+    published  Boolean  @default(false)
+    author     User     @relation(fields: [authorId], references: [id])
+    authorId   String
+    authorName String?
+    post       Posts    @relation(fields: [postId], references: [id])
+    postId     String
 }
