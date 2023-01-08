@@ -53,6 +53,7 @@ model User {
     email         String?    @unique
     emailVerified DateTime?
     image         String?
+    xp            Int        @default(0)
     accounts      Account[]
     sessions      Session[]
     Posts         Posts[]
@@ -88,9 +89,6 @@ model Comments {
     updatedAt  DateTime @default(now()) @updatedAt
     content    String
     published  Boolean  @default(false)
-    author     User     @relation(fields: [authorId, authorName], references: [id, name])
-    authorId   String
-    authorName String
     post       Posts    @relation(fields: [postId], references: [id])
     postId     String
 }

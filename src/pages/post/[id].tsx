@@ -47,7 +47,7 @@ const CommentSection = () => {
   return (
     <>
       <div className="flex w-full flex-col ">
-        <h1 className=" py-4 text-4xl font-bold">Comments</h1>
+        <h1 className=" py-4 text-4xl font-bold">Comments ({data?.length})</h1>
         {isLoading ? (
           <p>Loading...</p>
         ) : error ? (

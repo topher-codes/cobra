@@ -57,7 +57,7 @@ const DynamicUserPage = () => {
       <main className="flex w-full flex-1 flex-col  px-20">
         {!isEdit ? (
           <>
-            <h1 className="py-4 text-4xl font-bold">User ID: {id}</h1>
+            <h1 className="py-4 font-bold">User ID: {id}</h1>
             <p className="py-4 text-2xl font-bold">
               Profile Pic:{" "}
               <Image
