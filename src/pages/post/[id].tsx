@@ -44,6 +44,7 @@ const CommentSection = () => {
   const { data, error, isLoading } = api.comment.getPostComments.useQuery({
     id: id as string,
   });
+  const authorName = api.comment.getAll.useQuery();
 
   return (
     <>
@@ -60,7 +61,7 @@ const CommentSection = () => {
               key={comment.id}
             >
               <p className="py-4 font-bold">{comment.content}</p>
-              <p className="py-4 font-bold">By: {}</p>
+              <p className="py-4 font-bold">By: {comment.authorName}</p>
             </div>
           ))
         )}
@@ -83,6 +84,7 @@ const PostComment = () => {
       postId: id as string,
       content: content as string,
       authorId: session.data?.user?.id as string,
+      authorName: session.data?.user?.name as string,
     });
     router.reload();
   };
