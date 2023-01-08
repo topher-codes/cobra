@@ -5,14 +5,14 @@ import Image from "next/image";
 const Navbar = () => {
   const session = useSession();
   return (
-    <nav className="flex flex-wrap items-center justify-between bg-gray-800 p-6">
-      <div className="mr-6 flex flex-shrink-0 items-center text-white">
-        <span className="text-xl font-semibold tracking-tight">
+    <nav className="flex flex-wrap items-center justify-between bg-teal-400 p-6 text-black">
+      <div className="mr-6 flex flex-shrink-0 items-center">
+        <span className="text-2xl font-semibold tracking-tight">
           <Link href="/">Cobra</Link>
         </span>
       </div>
       <div className="block lg:hidden">
-        <button className="flex items-center rounded border border-gray-400 px-3 py-2 text-gray-200 hover:border-white hover:text-white">
+        <button className="flex items-center rounded border border-gray-400 px-3 py-2 text-gray-200 hover:border-white ">
           <svg
             className="h-3 w-3 fill-current"
             viewBox="0 0 20 20"
@@ -27,13 +27,13 @@ const Navbar = () => {
         <div className="text-sm lg:flex-grow">
           <Link
             href="/board"
-            className="mt-4 mr-4 block text-gray-200 hover:text-white lg:mt-0 lg:inline-block"
+            className="mt-4 mr-4 block text-black hover:text-white lg:mt-0 lg:inline-block"
           >
             Board
           </Link>
           <Link
             href={`/profile/${session.data?.user?.id}`}
-            className="mt-4 mr-4 block text-gray-200 hover:text-white lg:mt-0 lg:inline-block"
+            className="mt-4 mr-4 block text-black hover:text-white lg:mt-0 lg:inline-block"
           >
             <span>Profile</span>
           </Link>

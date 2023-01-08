@@ -44,7 +44,6 @@ const CommentSection = () => {
   const { data, error, isLoading } = api.comment.getPostComments.useQuery({
     id: id as string,
   });
-  const authorName = api.comment.getAll.useQuery();
 
   return (
     <>
@@ -93,18 +92,15 @@ const PostComment = () => {
     <>
       <div className="flex w-full flex-col">
         <h1 className="py-4 text-4xl font-bold">Post Comment</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="my-4 flex">
           <textarea
             placeholder="Comment"
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="h-40 w-full border-4 border-slate-800"
+            className="h-20 w-full border-4 border-slate-800"
           />
-          <button
-            className="my-10 w-full border border-black py-10"
-            type="submit"
-          >
-            <div className="text-6xl">Submit</div>
+          <button className=" border border-black p-4" type="submit">
+            <div className="text-2xl">Submit</div>
           </button>
         </form>
       </div>

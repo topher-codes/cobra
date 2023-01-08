@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
 
 import { api } from "../utils/api";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import SignIn from "../components/SignIn";
 import SignOut from "../components/SignOut";
@@ -37,15 +37,17 @@ const PostForm: React.FC = () => {
   const [body, setBody] = useState<string>("");
   const mutation = api.post.create.useMutation();
   const session = useSession();
+  const authorId = session.data?.user?.id || "";
+  const name = session.data?.user?.name || "Anonymous";
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (session.data?.user) {
       mutation.mutate({
         title,
         content: body,
-        authorId: session.data.user.id,
-        authorName: session.data.user.name,
+        authorId: authorId,
+        authorName: name,
       });
     }
   };
