@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <nav className="flex flex-wrap items-center justify-between bg-teal-400 p-6 text-black">
       <div className="mr-6 flex flex-shrink-0 items-center">
-        <span className="text-2xl font-semibold tracking-tight">
+        <span className="text-3xl font-semibold tracking-tight">
           <Link href="/">Cobra</Link>
         </span>
       </div>
@@ -24,7 +24,7 @@ const Navbar = () => {
         </button>
       </div>
       <div className="block w-full flex-grow lg:flex lg:w-auto lg:items-center">
-        <div className="text-sm lg:flex-grow">
+        <div className="text-2xl lg:flex-grow">
           <Link
             href="/board"
             className="mt-4 mr-4 block text-black hover:text-white lg:mt-0 lg:inline-block"
@@ -36,6 +36,12 @@ const Navbar = () => {
             className="mt-4 mr-4 block text-black hover:text-white lg:mt-0 lg:inline-block"
           >
             <span>Profile</span>
+          </Link>
+          <Link
+            href="/form"
+            className="mt-4 mr-4 block text-black hover:text-white lg:mt-0 lg:inline-block"
+          >
+            <span>Post</span>
           </Link>
         </div>
         <Image

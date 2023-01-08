@@ -22,8 +22,7 @@ const DynamicPostPage = () => {
         className="flex 
        w-full flex-1 flex-col px-20"
       >
-        <div className="  min-h-screen border-4 border-slate-800">
-          <h1 className="py-4 text-4xl font-bold">Post ID: {id}</h1>
+        <div className="min-h-screen border-4 border-slate-800">
           <p className="py-4 text-2xl font-bold">TITLE: {post}</p>
           <p className="py-4 text-2xl font-bold">CONTENT: {content}</p>
         </div>
@@ -91,7 +90,6 @@ const PostComment = () => {
   return (
     <>
       <div className="flex w-full flex-col">
-        <h1 className="py-4 text-4xl font-bold">Post Comment</h1>
         <form onSubmit={handleSubmit} className="my-4 flex">
           <textarea
             placeholder="Comment"

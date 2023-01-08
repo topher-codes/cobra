@@ -23,17 +23,15 @@ const BoardPage = () => {
           </div>
         </div>
         <div className="mx-40 flex w-full flex-1 flex-col items-center justify-center">
-          <h1 className="text-6xl font-bold">Board</h1>
           {session.data?.user ? (
             <>
               {result.data?.map((post) => (
                 <Link
-                  className="my-4 min-w-full border-4 p-4"
+                  className="my-4 min-w-full border-4 border-black p-4"
                   key={post.id}
                   href={`/post/${post.id}`}
                 >
                   <h2 className="text-3xl">{post.title}</h2>
-                  <p>{post.content}</p>
                   <p className="text-xs">By {post.authorName}</p>
                 </Link>
               ))}
