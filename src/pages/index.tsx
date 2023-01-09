@@ -1,9 +1,6 @@
 import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
 
-import { api } from "../utils/api";
-import React, { useState } from "react";
-
 import SignIn from "../components/SignIn";
 import SignOut from "../components/SignOut";
 
@@ -16,7 +13,6 @@ const Home: NextPage = () => {
         {session.data?.user ? (
           <>
             <p>You are signed in</p>
-            <PostForm />
             <SignOut />
           </>
         ) : (
@@ -31,49 +27,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-const PostForm: React.FC = () => {
-  const [title, setTitle] = useState<string>("");
-  const [body, setBody] = useState<string>("");
-  const mutation = api.post.create.useMutation();
-  const session = useSession();
-  const authorId = session.data?.user?.id || "";
-  const name = session.data?.user?.name || "Anonymous";
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (session.data?.user) {
-      mutation.mutate({
-        title,
-        content: body,
-        authorId: authorId,
-        authorName: name,
-      });
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="flex flex-col items-center">
-      <label htmlFor="title">Title</label>
-      <input
-        className="mb-2 border"
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <label htmlFor="body">Body</label>
-      <input
-        className="mb-2 border"
-        type="text"
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
-      />
-      <button
-        className="w-full rounded border-4 border-slate-800 p-1 hover:border-slate-400"
-        type="submit"
-      >
-        Submit
-      </button>
-    </form>
-  );
-};
