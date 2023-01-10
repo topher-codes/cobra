@@ -23,8 +23,13 @@ const DynamicPostPage = () => {
        w-full flex-1 flex-col px-20"
       >
         <div className="min-h-screen border-4 border-slate-800">
-          <p className="py-4 text-2xl font-bold">TITLE: {post}</p>
-          <p className="py-4 text-2xl font-bold">CONTENT: {content}</p>
+          <div className="p-4">
+            <p className="py-4 text-2xl font-bold">TITLE: {post}</p>
+            <p className="py-4  font-bold">CONTENT: {content}</p>
+            <p className="py-4 text-sm font-bold">
+              By {postData.data?.authorName}
+            </p>
+          </div>
         </div>
         <CommentSection />
         <PostComment />
@@ -55,7 +60,7 @@ const CommentSection = () => {
         ) : (
           data?.map((comment) => (
             <div
-              className="my-2 flex w-full flex-col border-4"
+              className="my-2 flex w-full flex-col border-4 p-4"
               key={comment.id}
             >
               <p className="py-4 font-bold">{comment.content}</p>

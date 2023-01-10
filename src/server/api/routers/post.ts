@@ -20,6 +20,7 @@ export const postRouter = createTRPCRouter({
         content: z.string(),
         authorId: z.string(),
         authorName: z.string(),
+        authorImage: z.string(),
       })
     )
     .mutation(({ ctx, input }) => {
@@ -29,6 +30,7 @@ export const postRouter = createTRPCRouter({
           content: input.content,
           authorId: input.authorId,
           authorName: input.authorName,
+          authorImage: input.authorImage,
         },
       });
     }),

@@ -13,6 +13,7 @@ const FormPage: NextPage = () => {
   const session = useSession();
   const authorId = session.data?.user?.id || "";
   const name = session.data?.user?.name || "Anonymous";
+  const authorImage = session.data?.user?.image || "";
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ const FormPage: NextPage = () => {
         content: body,
         authorId: authorId,
         authorName: name,
+        authorImage: authorImage,
       });
     }
     setFinished(true);

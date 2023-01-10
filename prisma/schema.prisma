@@ -52,13 +52,13 @@ model User {
     name          String
     email         String?    @unique
     emailVerified DateTime?
-    image         String?
+    image         String
     accounts      Account[]
     sessions      Session[]
     Posts         Posts[]
     Comments      Comments[]
 
-    @@unique([id, name])
+    @@unique([id, name, image])
 }
 
 model VerificationToken {
@@ -70,27 +70,29 @@ model VerificationToken {
 }
 
 model Posts {
-    id         String     @id @default(cuid())
-    createdAt  DateTime   @default(now())
-    updatedAt  DateTime   @default(now()) @updatedAt
-    title      String
-    content    String
-    published  Boolean    @default(false)
-    author     User       @relation(fields: [authorId, authorName], references: [id, name])
-    authorId   String
-    authorName String
-    Comments   Comments[]
+    id          String     @id @default(cuid())
+    createdAt   DateTime   @default(now())
+    updatedAt   DateTime   @default(now()) @updatedAt
+    title       String
+    content     String
+    published   Boolean    @default(false)
+    author      User       @relation(fields: [authorId, authorName, authorImage], references: [id, name, image])
+    authorId    String
+    authorName  String
+    authorImage String
+    Comments    Comments[]
 }
 
 model Comments {
-    id         String   @id @default(cuid())
-    createdAt  DateTime @default(now())
-    updatedAt  DateTime @default(now()) @updatedAt
-    content    String
-    published  Boolean  @default(false)
-    author     User     @relation(fields: [authorId, authorName], references: [id, name])
-    authorId   String
-    authorName String
-    post       Posts    @relation(fields: [postId], references: [id])
-    postId     String
+    id          String   @id @default(cuid())
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @default(now()) @updatedAt
+    content     String
+    published   Boolean  @default(false)
+    author      User     @relation(fields: [authorId, authorName, authorImage], references: [id, name, image])
+    authorId    String
+    authorName  String
+    authorImage String
+    post        Posts    @relation(fields: [postId], references: [id])
+    postId      String
 }

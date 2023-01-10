@@ -1,4 +1,5 @@
 import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import SignIn from "../components/SignIn";
 import SignOut from "../components/SignOut";
@@ -32,7 +33,16 @@ const BoardPage = () => {
                   href={`/post/${post.id}`}
                 >
                   <h2 className="text-3xl">{post.title}</h2>
-                  <p className="text-xs">By {post.authorName}</p>
+                  <p className="text-xs">
+                    By {post.authorName}
+                    <Image
+                      className="rounded-full"
+                      src={post.authorImage}
+                      width={30}
+                      height={30}
+                      alt="Nothing"
+                    />
+                  </p>
                 </Link>
               ))}
               <p>You are signed in</p>

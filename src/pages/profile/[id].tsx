@@ -62,7 +62,8 @@ const DynamicUserPage = () => {
               Profile Pic:{" "}
               <Image
                 src={userData.data?.image || "/avatarph.webp"}
-                width={300}
+                className="rounded-full"
+                width={200}
                 height={300}
                 alt="Placeholder"
               />
