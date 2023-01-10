@@ -10,6 +10,9 @@ export const profileRouter = createTRPCRouter({
         where: { id: input.id },
       });
     }),
+  getAll: publicProcedure.query(({ ctx }) => {
+    return ctx.prisma.user.findMany();
+  }),
   update: protectedProcedure
     .input(
       z.object({
