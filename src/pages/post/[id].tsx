@@ -10,11 +10,14 @@ const DynamicPostPage = () => {
 
   const [post, setPost] = useState<string | undefined>("");
   const [content, setContent] = useState<string | undefined>("");
+  const [isEditing, setIsEditing] = useState<boolean>(false);
   const postData = api.post.getOne.useQuery({ id: id as string });
   useEffect(() => {
     setPost(postData.data?.title);
     setContent(postData.data?.content);
   }, [postData.data]);
+
+  const editPost = api.post.update.useMutation();
 
   return (
     <>
@@ -24,8 +27,48 @@ const DynamicPostPage = () => {
       >
         <div className="min-h-screen border-4 border-slate-800">
           <div className="p-4">
-            <p className="py-4 text-2xl font-bold">TITLE: {post}</p>
-            <p className="py-4  font-bold">CONTENT: {content}</p>
+            {!isEditing ? (
+              <>
+                <p className="py-4 text-2xl font-bold">{post}</p>
+                <p className="py-4  font-bold">{content}</p>
+              </>
+            ) : (
+              <form
+                className="flex flex-col"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  editPost.mutate({
+                    id: id as string,
+                    title: post as string,
+                    content: content as string,
+                  });
+                  setIsEditing(false);
+                }}
+              >
+                <p className="py-4 text-2xl font-bold">TITLE:</p>
+                <input
+                  value={post}
+                  onChange={(e) => setPost(e.target.value)}
+                  className="py-4 text-2xl font-bold"
+                />
+                <p className="py-4 text-2xl font-bold">CONTENT:</p>
+                <textarea
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  className="py-4 text-2xl font-bold"
+                />
+                <button className=" border border-black p-4" type="submit">
+                  <div className="text-2xl">Submit</div>
+                </button>
+              </form>
+            )}
+            <button
+              className=" border border-black p-4"
+              onClick={() => setIsEditing(!isEditing)}
+            >
+              <div className="text-2xl">Edit</div>
+            </button>
+
             <p className="py-4 text-sm font-bold">
               By {postData.data?.authorName}
             </p>
