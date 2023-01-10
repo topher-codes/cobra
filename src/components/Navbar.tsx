@@ -43,6 +43,11 @@ const Navbar = () => {
           >
             <span>Post</span>
           </Link>
+          <Link href="/create">
+            <span className="mt-4 mr-4 block text-black hover:text-white lg:mt-0 lg:inline-block">
+              Create
+            </span>
+          </Link>
         </div>
         <Image
           src={session.data?.user?.image || "/avatarph.webp"}
