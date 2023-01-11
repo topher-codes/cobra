@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { api } from "../../utils/api";
 import BackButton from "../../components/BackButton";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 const DynamicPostPage = () => {
   const router = useRouter();
@@ -109,7 +110,14 @@ const CommentSection = () => {
               key={comment.id}
             >
               <p className="py-4 font-bold">{comment.content}</p>
-              <p className="py-4 font-bold">By: {comment.authorName}</p>
+              <Image
+                className="rounded-full"
+                src={comment.authorImage}
+                width={25}
+                height={25}
+                alt="PH"
+              />
+              <p className="text-sm">{comment.authorName}</p>
             </div>
           ))
         )}
@@ -133,6 +141,7 @@ const PostComment = () => {
       content: content as string,
       authorId: session.data?.user?.id as string,
       authorName: session.data?.user?.name as string,
+      authorImage: session.data?.user?.image as string,
     });
     router.reload();
   };

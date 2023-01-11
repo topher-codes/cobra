@@ -20,6 +20,7 @@ export const commentRouter = createTRPCRouter({
         authorId: z.string(),
         postId: z.string(),
         authorName: z.string(),
+        authorImage: z.string(),
       })
     )
     .mutation(({ ctx, input }) => {
@@ -29,7 +30,7 @@ export const commentRouter = createTRPCRouter({
           authorId: input.authorId,
           postId: input.postId,
           authorName: input.authorName,
-          authorImage: "/avatarph.webp",
+          authorImage: input.authorImage,
         },
       });
     }),
