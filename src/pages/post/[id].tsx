@@ -25,6 +25,8 @@ const DynamicPostPage = () => {
         className="flex 
        w-full flex-1 flex-col px-20"
       >
+        <BackButton />
+        <br></br>
         <div className="min-h-screen border-4 border-slate-800">
           <div className="p-4">
             {!isEditing ? (
