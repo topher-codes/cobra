@@ -29,6 +29,7 @@ export const commentRouter = createTRPCRouter({
           authorId: input.authorId,
           postId: input.postId,
           authorName: input.authorName,
+          authorImage: "/avatarph.webp",
         },
       });
     }),
